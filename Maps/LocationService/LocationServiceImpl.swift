@@ -9,26 +9,61 @@
 import CoreLocation
 import SwiftUI
 import Foundation
+import Combine
 
 final class LocationServiceImpl: NSObject {
 	private let locationManager: CLLocationManager
-	var currentLocation: State<CLLocationCoordinate2D>
-	
-	init(
-		startLocation: CLLocationCoordinate2D = Cities.moscow.coordinates
-	) {
-		self.currentLocation = State(initialValue: startLocation)
-		self.locationManager = CLLocationManager()
-		self.locationManager.delegate = self
+
+    let _currentLocation: PassthroughSubject<CLLocationCoordinate2D, Never>
+    let _authorizationStatatus: PassthroughSubject<CLAuthorizationStatus, Never>
+
+    override init() {
+        _currentLocation = PassthroughSubject<CLLocationCoordinate2D, Never>()
+        _authorizationStatatus = PassthroughSubject<CLAuthorizationStatus, Never>()
+		locationManager = CLLocationManager()
+
+        super.init()
+
+        locationManager.delegate = self
 	}
 }
 
 extension LocationServiceImpl: LocationService {
-	func findCurrent() {
-		<#code#>
-	}
+    var currentLocation: AnyPublisher<CLLocationCoordinate2D, Never>{
+        _currentLocation.eraseToAnyPublisher()
+    }
+
+    var authorizationStatatus: AnyPublisher<CLAuthorizationStatus, Never>{
+        Just(locationManager.authorizationStatus)
+            .merge(with: _authorizationStatatus)
+            .eraseToAnyPublisher()
+    }
+
+    func findCurrent() {
+        if locationManager.authorizationStatus.isAuthorized {
+            locationManager.requestLocation()
+        }
+    }
+
+    func requestPermissions() {
+        locationManager.requestWhenInUseAuthorization()
+    }
 }
 
 extension LocationServiceImpl: CLLocationManagerDelegate {
-	
+    func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
+        if let lastLocation = locations.last {
+            _currentLocation.send(lastLocation.coordinate)
+        }
+    }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didChangeAuthorization status: CLAuthorizationStatus
+    ) {
+        _authorizationStatatus.send(status)
+    }
 }

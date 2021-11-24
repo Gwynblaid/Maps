@@ -7,10 +7,12 @@
 //
 
 import CoreLocation
-import SwiftUI
+import Combine
 
 protocol LocationService {
-	var currentLocation: State<CLLocationCoordinate2D> { get }
+    var currentLocation: AnyPublisher<CLLocationCoordinate2D, Never> { get }
+    var authorizationStatatus: AnyPublisher<CLAuthorizationStatus, Never> { get }
 
 	func findCurrent()
+    func requestPermissions()
 }
