@@ -10,6 +10,8 @@ import CoreLocation
 import MapKit
 
 final class MapViewModel: ObservableObject {
+    // Не используются, ранее было сделано для того чтобы начинать с текущей геопозиции
+    // TODO: Использовать в инициализации карты. Добавить кнопку  центрирования
     @Published var location: MKCoordinateRegion
     @Published var locationServiceStatus: CLAuthorizationStatus = .notDetermined
     
@@ -63,6 +65,15 @@ final class MapViewModel: ObservableObject {
                     self.locationService.requestPermissions()
                 }
             }
+            .store(in: &cancellables)
+    }
+    
+    func bind(
+        selectedCell: AnyPublisher<LocationTableCellModel?, Never>
+    ) {
+        selectedCell
+            .map { $0?.location }
+            .assign(to: \.selectedLocation, on: self)
             .store(in: &cancellables)
     }
 }

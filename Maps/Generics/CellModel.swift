@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol CellModel: Identifiable, Hashable {
+protocol CellModel: Identifiable {
     associatedtype CellView: View
 
     var isSelected: Bool { get set }

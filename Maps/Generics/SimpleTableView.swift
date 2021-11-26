@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct SimpleTableView<CellModelType: CellModel, DataType>: View {
+struct SimpleTableView<CellModelType: CellModel, DataType: Equatable>: View {
     @ObservedObject var model: SimpleTableViewModel<CellModelType, DataType>
 
     init(model: SimpleTableViewModel<CellModelType, DataType>) {
@@ -19,7 +19,7 @@ struct SimpleTableView<CellModelType: CellModel, DataType>: View {
         NavigationView {
             List(model.cells) { cell in
                 cell.createCell().onTapGesture { [model] in
-                    model.selectedCell = cell
+                    model.selectedCellOutput = cell
                 }
             }
         }

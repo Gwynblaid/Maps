@@ -8,9 +8,22 @@
 import SwiftUI
 import Combine
 
-final class SimpleTableViewModel<CellModelType: CellModel, DataType>: ObservableObject {
-    @Published var cells: [CellModelType] = []
-    @Published var selectedCell: CellModelType?
+final class SimpleTableViewModel<CellModelType: CellModel, DataType: Equatable>: ObservableObject {
+    @Published var data: [DataType] = []
+    var selectedCell: CellModelType? {
+        guard let data = selectedData else { return nil }
+        return cellFactory(data)
+    }
+    var cells: [CellModelType] {
+        data.map {
+            var result = self.cellFactory($0)
+            result.isSelected = $0 == self.selectedData
+            return result
+        }
+    }
+    @Published var selectedCellOutput: CellModelType?
+    
+    @Published var selectedData: DataType?
 
     let cellFactory: (DataType) -> CellModelType
 
@@ -20,35 +33,21 @@ final class SimpleTableViewModel<CellModelType: CellModel, DataType>: Observable
         cellFactory: @escaping (DataType) -> CellModelType
     ) {
         self.cellFactory = cellFactory
-        $selectedCell.receive(on: DispatchQueue.main)
-            .sink { [weak self] selection in
-                guard let self = self else { return }
-                self.cells = self.cells.map {
-                    var model = $0
-                    model.isSelected = $0 == selection
-                    return model
-                }
-            }
-            .store(in: &cancellables)
     }
     
     func bind(
         dataPublisher: AnyPublisher<[DataType], Never>,
         selectedPublisher: AnyPublisher<DataType?, Never>
     ) {
-        dataPublisher.map { data in
-            data.map(self.cellFactory)
-        }
+        dataPublisher
         .receive(on: DispatchQueue.main)
-        .assign(to: \.cells, on: self)
+        .removeDuplicates()
+        .assign(to: \.data, on: self)
         .store(in: &cancellables)
 
-        selectedPublisher.map { value in
-            guard let value = value else { return nil }
-            return self.cellFactory(value)
-        }
+        selectedPublisher
         .receive(on: DispatchQueue.main)
-        .assign(to: \.selectedCell, on: self)
+        .assign(to: \.selectedData, on: self)
         .store(in: &cancellables)
     }
 }

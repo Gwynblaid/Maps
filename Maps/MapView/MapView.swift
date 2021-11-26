@@ -18,27 +18,26 @@ struct MapView: View {
         bind()
     }
 
+    // TODO: - Фабрика вместо метода bind и создания моделей
     func bind() {
         tableModel.bind(
             dataPublisher: viewModel.$locations.eraseToAnyPublisher(),
             selectedPublisher: viewModel.$selectedLocation.eraseToAnyPublisher()
         )
+        viewModel.bind(selectedCell: tableModel.$selectedCellOutput.eraseToAnyPublisher())
     }
     
 	var body: some View {
         return HStack(alignment: .center) {
             VStack {
                 SimpleTableView(model: tableModel)
-                Button("Add cell") {
-                    viewModel.locations.append(Cities.moscow.coordinates)
-                }
             }
             VStack(alignment: .center) {
-                TappableMapView(annotations: $viewModel.locations) {
+                TappableMapView(
+                    annotations: $viewModel.locations,
+                    selectedLocation: $viewModel.selectedLocation
+                ) {
                     viewModel.locations.append($0)
-                }
-                Button("Request") { [viewModel] in
-                    viewModel.isSearchingCurrentLocation.toggle()
                 }
             }
         }

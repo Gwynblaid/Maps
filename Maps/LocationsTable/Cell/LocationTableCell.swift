@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct LocationTableCell: View {
-    private let model: LocationTableCellModel
+    @State private var model: LocationTableCellModel
     
     init(model: LocationTableCellModel) {
         self.model = model
     }
     
     var body: some View {
-        let color = model.isSelected ? Color(.sRGB, red: 0, green: 0, blue: 1, opacity: 0.2) : .clear
+        let color = model.isSelected ?
+        Color(.sRGB, red: 0, green: 0, blue: 1, opacity: 0.2) : .clear
         return ZStack {
             color
             VStack {
