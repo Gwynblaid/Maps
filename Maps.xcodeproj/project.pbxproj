@@ -10,6 +10,14 @@
 		1831F3B7274ED78A003C90F1 /* CLLocationService+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831F3B6274ED78A003C90F1 /* CLLocationService+Status.swift */; };
 		1831F3BA274ED8B6003C90F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1831F3B9274ED8B6003C90F1 /* MapKit.framework */; };
 		1831F3BD274EDB5B003C90F1 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831F3BC274EDB5B003C90F1 /* MapViewModel.swift */; };
+		18E39100274F73CA0088BD43 /* LocationTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E390FF274F73CA0088BD43 /* LocationTableCellModel.swift */; };
+		18E39102274F74BA0088BD43 /* LocationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E39101274F74BA0088BD43 /* LocationTableCell.swift */; };
+		18E39108275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */; };
+		18E3910C27505BD00088BD43 /* TappableMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E3910B27505BD00088BD43 /* TappableMapView.swift */; };
+		18E3910F27506AC30088BD43 /* SimpleTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E3910E27506AC30088BD43 /* SimpleTableViewModel.swift */; };
+		18E3911327506C580088BD43 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E3911227506C580088BD43 /* CellModel.swift */; };
+		18E3911527506CF60088BD43 /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E3911427506CF60088BD43 /* SimpleTableView.swift */; };
+		18E3911827508D4C0088BD43 /* TappableMapUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E3911727508D4C0088BD43 /* TappableMapUIView.swift */; };
 		4563BE95274EA53B007F6AC2 /* LocationServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4563BE94274EA53B007F6AC2 /* LocationServiceImpl.swift */; };
 		4563BE97274EA73D007F6AC2 /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4563BE96274EA73D007F6AC2 /* Cities.swift */; };
 		45A56F7A274E9EA500F54B8C /* MapsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A56F79274E9EA500F54B8C /* MapsApp.swift */; };
@@ -42,6 +50,14 @@
 		1831F3B6274ED78A003C90F1 /* CLLocationService+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationService+Status.swift"; sourceTree = "<group>"; };
 		1831F3B9274ED8B6003C90F1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1831F3BC274EDB5B003C90F1 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		18E390FF274F73CA0088BD43 /* LocationTableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCellModel.swift; sourceTree = "<group>"; };
+		18E39101274F74BA0088BD43 /* LocationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCell.swift; sourceTree = "<group>"; };
+		18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
+		18E3910B27505BD00088BD43 /* TappableMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableMapView.swift; sourceTree = "<group>"; };
+		18E3910E27506AC30088BD43 /* SimpleTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewModel.swift; sourceTree = "<group>"; };
+		18E3911227506C580088BD43 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		18E3911427506CF60088BD43 /* SimpleTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableView.swift; sourceTree = "<group>"; };
+		18E3911727508D4C0088BD43 /* TappableMapUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableMapUIView.swift; sourceTree = "<group>"; };
 		4563BE94274EA53B007F6AC2 /* LocationServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceImpl.swift; sourceTree = "<group>"; };
 		4563BE96274EA73D007F6AC2 /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
 		45A56F76274E9EA500F54B8C /* Maps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maps.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				1831F3B6274ED78A003C90F1 /* CLLocationService+Status.swift */,
+				18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -104,10 +121,47 @@
 		1831F3BB274EDB36003C90F1 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
+				18E3911627508D160088BD43 /* TappableMapView */,
 				45A56F7B274E9EA500F54B8C /* MapView.swift */,
 				1831F3BC274EDB5B003C90F1 /* MapViewModel.swift */,
 			);
 			path = MapView;
+			sourceTree = "<group>";
+		};
+		18E390FD274F73A00088BD43 /* LocationsTable */ = {
+			isa = PBXGroup;
+			children = (
+				18E390FE274F73B60088BD43 /* Cell */,
+			);
+			path = LocationsTable;
+			sourceTree = "<group>";
+		};
+		18E390FE274F73B60088BD43 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				18E390FF274F73CA0088BD43 /* LocationTableCellModel.swift */,
+				18E39101274F74BA0088BD43 /* LocationTableCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		18E3910D27506AB40088BD43 /* Generics */ = {
+			isa = PBXGroup;
+			children = (
+				18E3910E27506AC30088BD43 /* SimpleTableViewModel.swift */,
+				18E3911427506CF60088BD43 /* SimpleTableView.swift */,
+				18E3911227506C580088BD43 /* CellModel.swift */,
+			);
+			path = Generics;
+			sourceTree = "<group>";
+		};
+		18E3911627508D160088BD43 /* TappableMapView */ = {
+			isa = PBXGroup;
+			children = (
+				18E3911727508D4C0088BD43 /* TappableMapUIView.swift */,
+				18E3910B27505BD00088BD43 /* TappableMapView.swift */,
+			);
+			path = TappableMapView;
 			sourceTree = "<group>";
 		};
 		45A56F6D274E9EA500F54B8C = {
@@ -134,6 +188,8 @@
 		45A56F78274E9EA500F54B8C /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				18E3910D27506AB40088BD43 /* Generics */,
+				18E390FD274F73A00088BD43 /* LocationsTable */,
 				1831F3BB274EDB36003C90F1 /* MapView */,
 				45A56FB2274EA29F00F54B8C /* LocationService */,
 				45A56F79274E9EA500F54B8C /* MapsApp.swift */,
@@ -310,12 +366,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E3910C27505BD00088BD43 /* TappableMapView.swift in Sources */,
+				18E3911827508D4C0088BD43 /* TappableMapUIView.swift in Sources */,
 				4563BE95274EA53B007F6AC2 /* LocationServiceImpl.swift in Sources */,
+				18E39100274F73CA0088BD43 /* LocationTableCellModel.swift in Sources */,
+				18E3910F27506AC30088BD43 /* SimpleTableViewModel.swift in Sources */,
+				18E39102274F74BA0088BD43 /* LocationTableCell.swift in Sources */,
 				1831F3B7274ED78A003C90F1 /* CLLocationService+Status.swift in Sources */,
 				4563BE97274EA73D007F6AC2 /* Cities.swift in Sources */,
+				18E3911327506C580088BD43 /* CellModel.swift in Sources */,
 				45A56F7C274E9EA500F54B8C /* MapView.swift in Sources */,
 				1831F3BD274EDB5B003C90F1 /* MapViewModel.swift in Sources */,
 				45A56FAE274EA29A00F54B8C /* LocationService.swift in Sources */,
+				18E3911527506CF60088BD43 /* SimpleTableView.swift in Sources */,
+				18E39108275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				45A56F7A274E9EA500F54B8C /* MapsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

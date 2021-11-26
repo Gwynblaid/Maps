@@ -14,8 +14,10 @@ final class MapViewModel: ObservableObject {
     @Published var locationServiceStatus: CLAuthorizationStatus = .notDetermined
     
     @Published var isSearchingCurrentLocation: Bool = false
-    
-    private var cancellables = Set<AnyCancellable>()
+    @Published var locations: [CLLocationCoordinate2D] = []
+    @Published var selectedLocation: CLLocationCoordinate2D?
+
+    var cancellables = Set<AnyCancellable>()
     
     private let locationService: LocationService
 
