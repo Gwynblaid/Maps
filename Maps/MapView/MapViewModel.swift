@@ -14,17 +14,24 @@ final class MapViewModel: ObservableObject {
     // TODO: Использовать в инициализации карты. Добавить кнопку  центрирования
     @Published var location: MKCoordinateRegion
     @Published var locationServiceStatus: CLAuthorizationStatus = .notDetermined
+    @Published var mapSelectedLocation: CLLocationCoordinate2D?
+    @Published var mapLocations: [CLLocationCoordinate2D] = []
     
     @Published var isSearchingCurrentLocation: Bool = false
-    @Published var locations: [CLLocationCoordinate2D] = []
-    @Published var selectedLocation: CLLocationCoordinate2D?
+    @Published var locations: [LocationObject] = []
+    @Published var selectedLocation: LocationObject?
 
     var cancellables = Set<AnyCancellable>()
     
     private let locationService: LocationService
+    private let storeManager: StorageManager
 
-    init(locationService: LocationService) {
+    init(
+        locationService: LocationService,
+        storeManager: StorageManager
+    ) {
         self.locationService = locationService
+        self.storeManager = storeManager
         let distance: CLLocationDistance = 1000
         location = MKCoordinateRegion(
             center: Cities.moscow.coordinates,
@@ -66,12 +73,53 @@ final class MapViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        
+        let savedLocations: Set<LocationObject> =  storeManager.getAll()
+        locations = Array(savedLocations)
+            .sorted { $0.timestamp > $1.timestamp }
+        let savedSelectedLocation: Set<SelectedLocationObject> = storeManager.getAll()
+        let selectedId = savedSelectedLocation.first?.id
+        selectedLocation = locations.first { $0.id == selectedId }
+        $locations
+            .removeDuplicates()
+            .sink { [weak self] locations in
+                guard let self = self else { return }
+//                _ = self.storeManager.save(Set(locations))
+                self.mapLocations = locations.map(\.location)
+            }
+            .store(in: &cancellables)
+        $selectedLocation
+            .removeDuplicates()
+            .sink {
+                self.mapSelectedLocation = $0?.location
+                let _: Set<SelectedLocationObject> = self.storeManager.removeAll()
+                if let id = $0?.id {
+                    _ = self.storeManager.save(SelectedLocationObject(id: id))
+                }
+            }
+            .store(in: &cancellables)
+        $mapSelectedLocation
+            .removeDuplicates()
+            .sink { location in
+                self.selectedLocation = self.locations.first { $0.location == location }
+            }
+            .store(in: &cancellables)
+        
+        $locations
+            .dropFirst()
+            .removeDuplicates()
+            .sink { [weak self] locations in
+                guard let self = self else { return }
+                _ = self.storeManager.save(Set(locations))
+            }
+            .store(in: &cancellables)
     }
     
     func bind(
         selectedCell: AnyPublisher<LocationTableCellModel?, Never>
     ) {
         selectedCell
+            .dropFirst()
             .map { $0?.location }
             .assign(to: \.selectedLocation, on: self)
             .store(in: &cancellables)

@@ -11,10 +11,10 @@ import Combine
 
 struct TappableMapView: UIViewRepresentable {
     @Binding private var annotations: [CLLocationCoordinate2D]
+    @Binding var selectedLocation: CLLocationCoordinate2D?
     private let onLongPress: (CLLocationCoordinate2D) -> Void
     let defaultColor: Color
     let selectedColor: Color
-    @Binding var selectedLocation: CLLocationCoordinate2D?
     
     // TODO: Добавить в инициализатор начальные координаты
     init(

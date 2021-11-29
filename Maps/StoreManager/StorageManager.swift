@@ -5,6 +5,7 @@
 //  Created by Sergey Harchenko on 28.11.2021.
 //
 
+// TODO: Сделать реактивным
 protocol StorageManager {
     func save<ObjectType: StorageObject>(_ object: ObjectType) -> Bool
     func save<ObjectType: StorageObject>(_ objects: Set<ObjectType>) -> Bool

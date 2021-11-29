@@ -13,8 +13,9 @@
 		184A00272753C25300DAC970 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A00262753C25300DAC970 /* StorageManager.swift */; };
 		184A00292753C26F00DAC970 /* StorageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A00282753C26F00DAC970 /* StorageObject.swift */; };
 		184A002C2753D9F500DAC970 /* UserDefaultsStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A002B2753D9F500DAC970 /* UserDefaultsStorageManager.swift */; };
-		184A002F2753DD9100DAC970 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A002E2753DD9100DAC970 /* Coordinates.swift */; };
+		184A002F2753DD9100DAC970 /* LocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A002E2753DD9100DAC970 /* LocationObject.swift */; };
 		184A00312753DE4800DAC970 /* CLLocationCoordinate2D+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A00302753DE4800DAC970 /* CLLocationCoordinate2D+Codable.swift */; };
+		184A003827544D1E00DAC970 /* SelectedLocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A003727544D1E00DAC970 /* SelectedLocationObject.swift */; };
 		18E39100274F73CA0088BD43 /* LocationTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E390FF274F73CA0088BD43 /* LocationTableCellModel.swift */; };
 		18E39102274F74BA0088BD43 /* LocationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E39101274F74BA0088BD43 /* LocationTableCell.swift */; };
 		18E39108275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */; };
@@ -58,8 +59,9 @@
 		184A00262753C25300DAC970 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		184A00282753C26F00DAC970 /* StorageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageObject.swift; sourceTree = "<group>"; };
 		184A002B2753D9F500DAC970 /* UserDefaultsStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorageManager.swift; sourceTree = "<group>"; };
-		184A002E2753DD9100DAC970 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		184A002E2753DD9100DAC970 /* LocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationObject.swift; sourceTree = "<group>"; };
 		184A00302753DE4800DAC970 /* CLLocationCoordinate2D+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Codable.swift"; sourceTree = "<group>"; };
+		184A003727544D1E00DAC970 /* SelectedLocationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationObject.swift; sourceTree = "<group>"; };
 		18E390FF274F73CA0088BD43 /* LocationTableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCellModel.swift; sourceTree = "<group>"; };
 		18E39101274F74BA0088BD43 /* LocationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCell.swift; sourceTree = "<group>"; };
 		18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
@@ -115,8 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				1831F3B6274ED78A003C90F1 /* CLLocationService+Status.swift */,
-				18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */,
 				184A00302753DE4800DAC970 /* CLLocationCoordinate2D+Codable.swift */,
+				18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -161,7 +163,8 @@
 		184A002D2753DD6B00DAC970 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
-				184A002E2753DD9100DAC970 /* Coordinates.swift */,
+				184A002E2753DD9100DAC970 /* LocationObject.swift */,
+				184A003727544D1E00DAC970 /* SelectedLocationObject.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -418,7 +421,8 @@
 				184A00292753C26F00DAC970 /* StorageObject.swift in Sources */,
 				45A56F7C274E9EA500F54B8C /* MapView.swift in Sources */,
 				1831F3BD274EDB5B003C90F1 /* MapViewModel.swift in Sources */,
-				184A002F2753DD9100DAC970 /* Coordinates.swift in Sources */,
+				184A003827544D1E00DAC970 /* SelectedLocationObject.swift in Sources */,
+				184A002F2753DD9100DAC970 /* LocationObject.swift in Sources */,
 				184A00312753DE4800DAC970 /* CLLocationCoordinate2D+Codable.swift in Sources */,
 				45A56FAE274EA29A00F54B8C /* LocationService.swift in Sources */,
 				18E3911527506CF60088BD43 /* SimpleTableView.swift in Sources */,

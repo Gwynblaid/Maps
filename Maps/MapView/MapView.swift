@@ -11,7 +11,10 @@ import MapKit
 import Combine
 
 struct MapView: View {
-    @ObservedObject var viewModel: MapViewModel = MapViewModel(locationService: LocationServiceImpl())
+    @ObservedObject var viewModel: MapViewModel = MapViewModel(
+        locationService: LocationServiceImpl(),
+        storeManager: UserDefaultsStorageManager()
+    )
     @ObservedObject var tableModel = SimpleTableViewModel(cellFactory: { LocationTableCellModel(isSelected: false, location: $0) })
     
     init() {
@@ -21,7 +24,9 @@ struct MapView: View {
     // TODO: - Фабрика вместо метода bind и создания моделей
     func bind() {
         tableModel.bind(
-            dataPublisher: viewModel.$locations.eraseToAnyPublisher(),
+            dataPublisher: viewModel
+                .$locations
+                .eraseToAnyPublisher(),
             selectedPublisher: viewModel.$selectedLocation.eraseToAnyPublisher()
         )
         viewModel.bind(selectedCell: tableModel.$selectedCellOutput.eraseToAnyPublisher())
@@ -29,16 +34,12 @@ struct MapView: View {
     
 	var body: some View {
         return HStack(alignment: .center) {
-            VStack {
-                SimpleTableView(model: tableModel)
-            }
-            VStack(alignment: .center) {
-                TappableMapView(
-                    annotations: $viewModel.locations,
-                    selectedLocation: $viewModel.selectedLocation
-                ) {
-                    viewModel.locations.append($0)
-                }
+            SimpleTableView(model: tableModel)
+            TappableMapView(
+                annotations: $viewModel.mapLocations,
+                selectedLocation: $viewModel.mapSelectedLocation
+            ) {
+                viewModel.locations.append(LocationObject(location: $0))
             }
         }
 	}

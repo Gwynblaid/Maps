@@ -9,14 +9,11 @@ import CoreLocation
 import SwiftUI
 
 struct LocationTableCellModel: CellModel {
-    typealias DataType = CLLocationCoordinate2D
-    typealias CellView = LocationTableCell
-
     var isSelected: Bool
     
     var id = UUID().uuidString
 
-    let location: CLLocationCoordinate2D
+    let location: LocationObject
 
     func createCell() -> LocationTableCell {
         LocationTableCell(model: self)

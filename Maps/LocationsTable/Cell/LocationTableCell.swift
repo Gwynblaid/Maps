@@ -20,8 +20,8 @@ struct LocationTableCell: View {
         return ZStack {
             color
             VStack {
-                Text("Lat: \(model.location.latitude)")
-                Text("Long: \(model.location.longitude)")
+                Text("Lat: \(model.location.location.latitude)")
+                Text("Long: \(model.location.location.longitude)")
             }
         }
     }

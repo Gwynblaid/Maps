@@ -25,8 +25,7 @@ final class UserDefaultsStorageManager: StorageManager {
         var saved: Set<ObjectType> = getAll()
         saved.formUnion(objects)
         cache?[ObjectType.entityName] = saved
-        userDefaults.set(saved, forKey: ObjectType.entityName)
-        return true
+        return setToUserDefault(objects)
     }
     
     func get<ObjectType>(_ id: ObjectType.ID) -> ObjectType? where ObjectType : StorageObject {
@@ -36,7 +35,7 @@ final class UserDefaultsStorageManager: StorageManager {
     
     func getAll<ObjectType>() -> Set<ObjectType> where ObjectType : StorageObject {
         guard let result = cache?[ObjectType.entityName] as? Set<ObjectType> else {
-            let result = Set((userDefaults.value(forKey: ObjectType.entityName) as? [ObjectType]) ?? [])
+            let result: Set<ObjectType> = getFromUserDefault()
             cache?[ObjectType.entityName] = result
             return result
         }
@@ -47,7 +46,26 @@ final class UserDefaultsStorageManager: StorageManager {
         var saved: Set<ObjectType> = getAll()
         saved.subtract(objects)
         cache?[ObjectType.entityName] = saved
-        userDefaults.set(saved, forKey: ObjectType.entityName)
+        return setToUserDefault(objects)
+    }
+    
+    private func setToUserDefault<ObjectType: StorageObject>(_ objects: Set<ObjectType>) -> Bool {
+        if objects.isEmpty {
+            userDefaults.removeObject(forKey: ObjectType.entityName)
+            return true
+        }
+        guard let data = try? JSONEncoder().encode(objects) else {
+            return false
+        }
+        userDefaults.set(data, forKey: ObjectType.entityName)
         return true
+    }
+    
+    private func getFromUserDefault<ObjectType: StorageObject>() -> Set<ObjectType> {
+        let data = userDefaults.data(forKey: ObjectType.entityName) ?? Data()
+        guard let result = try? JSONDecoder().decode(Set<ObjectType>.self, from: data) else {
+            return Set<ObjectType>()
+        }
+        return result
     }
 }

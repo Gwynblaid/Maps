@@ -26,3 +26,14 @@ extension CLLocationCoordinate2D: Codable {
         self.init(latitude: latitude, longitude: longitude)
     }
 }
+
+extension CLLocationCoordinate2D: Hashable {
+    public var hashValue: Int {
+        Int((latitude * 100 + longitude) * 100)
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(latitude)
+        hasher.combine(longitude)
+    }
+}

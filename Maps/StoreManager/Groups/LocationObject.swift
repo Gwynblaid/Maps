@@ -1,5 +1,5 @@
 //
-//  Coordinates.swift
+//  LocationObject.swift
 //  Maps
 //
 //  Created by Sergey Harchenko on 28.11.2021.
@@ -8,22 +8,21 @@
 import Foundation
 import CoreLocation
 
-struct Coordinates: StorageObject, Codable {
+struct LocationObject: StorageObject, Codable {
     static var entityName: String {
-        "Coordinates"
+        "LocationObject"
     }
 
     let id: String
-    let coordinate: CLLocationCoordinate2D
+    let location: CLLocationCoordinate2D
     let timestamp: TimeInterval
     
     init(
-        id: String = UUID().uuidString,
-        coordinate: CLLocationCoordinate2D,
+        location: CLLocationCoordinate2D,
         timestamp: TimeInterval = Date().timeIntervalSince1970
     ) {
-        self.id = id
-        self.coordinate = coordinate
+        self.id = "\(location.latitude):\(location.longitude)"
+        self.location = location
         self.timestamp = timestamp
     }
 }
