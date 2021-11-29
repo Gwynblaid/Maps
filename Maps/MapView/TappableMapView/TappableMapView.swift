@@ -117,7 +117,7 @@ extension TappableMapView {
                 return MKOverlayRenderer()
             }
             let renderer = MKPolylineRenderer(polyline: polyline)
-            renderer.fillColor = .red
+            renderer.fillColor = .clear
             renderer.strokeColor = .red
             renderer.lineWidth = 5
             return renderer
