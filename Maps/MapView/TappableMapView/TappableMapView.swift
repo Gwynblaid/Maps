@@ -44,11 +44,18 @@ struct TappableMapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        uiView.removeAnnotations(uiView.annotations)
-        uiView.addAnnotations(annotations.map {
-            let annotation = TappableMapAnnotation(coordinate: $0)
-            return annotation
-        })
+        let annotationsToDelete = uiView.annotations.filter {
+            !annotations.contains($0.coordinate)
+        }
+        let annotationsToAdd: [TappableMapAnnotation] = annotations
+            .filter {
+                !uiView.annotations.map(\.coordinate).contains($0)
+            }
+            .map(TappableMapAnnotation.init)
+        uiView.removeAnnotations(annotationsToDelete)
+        uiView.addAnnotations(annotationsToAdd)
+        uiView.removeOverlays(uiView.overlays)
+        uiView.addOverlay(MKPolyline(coordinates: annotations, count: annotations.count))
     }
 }
 extension TappableMapView {
@@ -103,6 +110,17 @@ extension TappableMapView {
                 return
             }
             parent.selectedLocation = annotation.coordinate
+        }
+        
+        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+            guard let polyline = overlay as? MKPolyline else {
+                return MKOverlayRenderer()
+            }
+            let renderer = MKPolylineRenderer(polyline: polyline)
+            renderer.fillColor = .red
+            renderer.strokeColor = .red
+            renderer.lineWidth = 5
+            return renderer
         }
     }
 
