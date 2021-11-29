@@ -19,6 +19,14 @@
 		184A003A2754627600DAC970 /* TappableMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A00392754627600DAC970 /* TappableMapAnnotation.swift */; };
 		184A003C275467E600DAC970 /* CLLocationDegrees+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A003B275467E600DAC970 /* CLLocationDegrees+Round.swift */; };
 		18C1F121275547CE00A349C8 /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F120275547CE00A349C8 /* PropertyWrapper.swift */; };
+		18C1F12327555E1F00A349C8 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F12227555E1F00A349C8 /* MainViewModel.swift */; };
+		18C1F1252755614000A349C8 /* SimpleTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F1242755614000A349C8 /* SimpleTableViewModelTests.swift */; };
+		18C1F1282755617A00A349C8 /* DataMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F1272755617A00A349C8 /* DataMock.swift */; };
+		18C1F12D2755620500A349C8 /* CellMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F129275561DC00A349C8 /* CellMock.swift */; };
+		18C1F12E2755620900A349C8 /* ViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F12B2755620000A349C8 /* ViewMock.swift */; };
+		18C1F1312755706900A349C8 /* MainViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F1302755706900A349C8 /* MainViewFactory.swift */; };
+		18C1F133275570A000A349C8 /* MainViewFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F132275570A000A349C8 /* MainViewFactoryImpl.swift */; };
+		18C1F136275572F000A349C8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F135275572F000A349C8 /* MapView.swift */; };
 		18E39100274F73CA0088BD43 /* LocationTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E390FF274F73CA0088BD43 /* LocationTableCellModel.swift */; };
 		18E39102274F74BA0088BD43 /* LocationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E39101274F74BA0088BD43 /* LocationTableCell.swift */; };
 		18E39108275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */; };
@@ -30,7 +38,7 @@
 		4563BE95274EA53B007F6AC2 /* LocationServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4563BE94274EA53B007F6AC2 /* LocationServiceImpl.swift */; };
 		4563BE97274EA73D007F6AC2 /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4563BE96274EA73D007F6AC2 /* Cities.swift */; };
 		45A56F7A274E9EA500F54B8C /* MapsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A56F79274E9EA500F54B8C /* MapsApp.swift */; };
-		45A56F7C274E9EA500F54B8C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A56F7B274E9EA500F54B8C /* MapView.swift */; };
+		45A56F7C274E9EA500F54B8C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A56F7B274E9EA500F54B8C /* MainView.swift */; };
 		45A56F7E274E9EA700F54B8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45A56F7D274E9EA700F54B8C /* Assets.xcassets */; };
 		45A56F81274E9EA700F54B8C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45A56F80274E9EA700F54B8C /* Preview Assets.xcassets */; };
 		45A56F8C274E9EA700F54B8C /* MapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A56F8B274E9EA700F54B8C /* MapsTests.swift */; };
@@ -68,6 +76,14 @@
 		184A00392754627600DAC970 /* TappableMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableMapAnnotation.swift; sourceTree = "<group>"; };
 		184A003B275467E600DAC970 /* CLLocationDegrees+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationDegrees+Round.swift"; sourceTree = "<group>"; };
 		18C1F120275547CE00A349C8 /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
+		18C1F12227555E1F00A349C8 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		18C1F1242755614000A349C8 /* SimpleTableViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewModelTests.swift; sourceTree = "<group>"; };
+		18C1F1272755617A00A349C8 /* DataMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMock.swift; sourceTree = "<group>"; };
+		18C1F129275561DC00A349C8 /* CellMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellMock.swift; sourceTree = "<group>"; };
+		18C1F12B2755620000A349C8 /* ViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMock.swift; sourceTree = "<group>"; };
+		18C1F1302755706900A349C8 /* MainViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewFactory.swift; sourceTree = "<group>"; };
+		18C1F132275570A000A349C8 /* MainViewFactoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewFactoryImpl.swift; sourceTree = "<group>"; };
+		18C1F135275572F000A349C8 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		18E390FF274F73CA0088BD43 /* LocationTableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCellModel.swift; sourceTree = "<group>"; };
 		18E39101274F74BA0088BD43 /* LocationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCell.swift; sourceTree = "<group>"; };
 		18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
@@ -80,7 +96,7 @@
 		4563BE96274EA73D007F6AC2 /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
 		45A56F76274E9EA500F54B8C /* Maps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45A56F79274E9EA500F54B8C /* MapsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsApp.swift; sourceTree = "<group>"; };
-		45A56F7B274E9EA500F54B8C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		45A56F7B274E9EA500F54B8C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		45A56F7D274E9EA700F54B8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45A56F80274E9EA700F54B8C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		45A56F82274E9EA700F54B8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,9 +157,10 @@
 		1831F3BB274EDB36003C90F1 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
-				18E3911627508D160088BD43 /* TappableMapView */,
-				45A56F7B274E9EA500F54B8C /* MapView.swift */,
 				1831F3BC274EDB5B003C90F1 /* MapViewModel.swift */,
+				18C1F135275572F000A349C8 /* MapView.swift */,
+				18C1F12F2755705B00A349C8 /* Factory */,
+				18E3911627508D160088BD43 /* TappableMapView */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -176,6 +193,54 @@
 			path = Groups;
 			sourceTree = "<group>";
 		};
+		18C1F1262755614600A349C8 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				18C1F138275591AB00A349C8 /* Mocks */,
+				18C1F1242755614000A349C8 /* SimpleTableViewModelTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		18C1F12F2755705B00A349C8 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				18C1F1302755706900A349C8 /* MainViewFactory.swift */,
+				18C1F132275570A000A349C8 /* MainViewFactoryImpl.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		18C1F134275571F800A349C8 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				45A56F7B274E9EA500F54B8C /* MainView.swift */,
+				18C1F12227555E1F00A349C8 /* MainViewModel.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		18C1F1372755750E00A349C8 /* SimpleTable */ = {
+			isa = PBXGroup;
+			children = (
+				18C1F1262755614600A349C8 /* Tests */,
+				18E3910E27506AC30088BD43 /* SimpleTableViewModel.swift */,
+				18E3911427506CF60088BD43 /* SimpleTableView.swift */,
+				18E3911227506C580088BD43 /* CellModel.swift */,
+			);
+			path = SimpleTable;
+			sourceTree = "<group>";
+		};
+		18C1F138275591AB00A349C8 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				18C1F1272755617A00A349C8 /* DataMock.swift */,
+				18C1F129275561DC00A349C8 /* CellMock.swift */,
+				18C1F12B2755620000A349C8 /* ViewMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		18E390FD274F73A00088BD43 /* LocationsTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,9 +261,7 @@
 		18E3910D27506AB40088BD43 /* Generics */ = {
 			isa = PBXGroup;
 			children = (
-				18E3910E27506AC30088BD43 /* SimpleTableViewModel.swift */,
-				18E3911427506CF60088BD43 /* SimpleTableView.swift */,
-				18E3911227506C580088BD43 /* CellModel.swift */,
+				18C1F1372755750E00A349C8 /* SimpleTable */,
 			);
 			path = Generics;
 			sourceTree = "<group>";
@@ -238,6 +301,7 @@
 		45A56F78274E9EA500F54B8C /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				18C1F134275571F800A349C8 /* MainView */,
 				184A00252753C23F00DAC970 /* StoreManager */,
 				18E3910D27506AB40088BD43 /* Generics */,
 				18E390FD274F73A00088BD43 /* LocationsTable */,
@@ -421,7 +485,9 @@
 				18E3911827508D4C0088BD43 /* TappableMapUIView.swift in Sources */,
 				4563BE95274EA53B007F6AC2 /* LocationServiceImpl.swift in Sources */,
 				18E39100274F73CA0088BD43 /* LocationTableCellModel.swift in Sources */,
+				18C1F1312755706900A349C8 /* MainViewFactory.swift in Sources */,
 				18E3910F27506AC30088BD43 /* SimpleTableViewModel.swift in Sources */,
+				18C1F12327555E1F00A349C8 /* MainViewModel.swift in Sources */,
 				184A00272753C25300DAC970 /* StorageManager.swift in Sources */,
 				18E39102274F74BA0088BD43 /* LocationTableCell.swift in Sources */,
 				1831F3B7274ED78A003C90F1 /* CLLocationService+Status.swift in Sources */,
@@ -429,12 +495,14 @@
 				4563BE97274EA73D007F6AC2 /* Cities.swift in Sources */,
 				18E3911327506C580088BD43 /* CellModel.swift in Sources */,
 				184A00292753C26F00DAC970 /* StorageObject.swift in Sources */,
-				45A56F7C274E9EA500F54B8C /* MapView.swift in Sources */,
+				45A56F7C274E9EA500F54B8C /* MainView.swift in Sources */,
 				1831F3BD274EDB5B003C90F1 /* MapViewModel.swift in Sources */,
+				18C1F133275570A000A349C8 /* MainViewFactoryImpl.swift in Sources */,
 				18C1F121275547CE00A349C8 /* PropertyWrapper.swift in Sources */,
 				184A003827544D1E00DAC970 /* SelectedLocationObject.swift in Sources */,
 				184A002F2753DD9100DAC970 /* LocationObject.swift in Sources */,
 				184A00312753DE4800DAC970 /* CLLocationCoordinate2D+Codable.swift in Sources */,
+				18C1F136275572F000A349C8 /* MapView.swift in Sources */,
 				45A56FAE274EA29A00F54B8C /* LocationService.swift in Sources */,
 				18E3911527506CF60088BD43 /* SimpleTableView.swift in Sources */,
 				184A003A2754627600DAC970 /* TappableMapAnnotation.swift in Sources */,
@@ -449,6 +517,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				45A56F8C274E9EA700F54B8C /* MapsTests.swift in Sources */,
+				18C1F12E2755620900A349C8 /* ViewMock.swift in Sources */,
+				18C1F1252755614000A349C8 /* SimpleTableViewModelTests.swift in Sources */,
+				18C1F1282755617A00A349C8 /* DataMock.swift in Sources */,
+				18C1F12D2755620500A349C8 /* CellMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

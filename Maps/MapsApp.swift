@@ -10,9 +10,11 @@ import SwiftUI
 
 @main
 struct MapsApp: App {
+    let mainViewFactory: MainViewFactory = MainViewFactoryImpl()
+    
     var body: some Scene {
         WindowGroup {
-            MapView()
+            mainViewFactory.createMainView()
         }
     }
 }

@@ -10,7 +10,7 @@ import CoreLocation
 import MapKit
 
 // TODO: - Сократить класс. Разбить на работу со стором и работу с картой.
-// Добавить в него работу с таблицей, чтобы MapView имел только одну модель
+// Добавить в него работу с таблицей, чтобы MainView имел только одну модель
 final class MapViewModel: ObservableObject {
     // Не используются, ранее было сделано для того чтобы начинать с текущей геопозиции
     // TODO: Использовать в инициализации карты. Добавить кнопку  центрирования
@@ -119,16 +119,6 @@ final class MapViewModel: ObservableObject {
                 guard let self = self else { return }
                 _ = self.storeManager.save(Set(locations))
             }
-            .store(in: &cancellables)
-    }
-    
-    func bind(
-        selectedCell: AnyPublisher<LocationTableCellModel?, Never>
-    ) {
-        selectedCell
-            .dropFirst()
-            .map { $0?.location }
-            .assign(to: \.selectedLocation, on: self)
             .store(in: &cancellables)
     }
 }

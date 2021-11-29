@@ -43,22 +43,18 @@ struct TappableMapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        // TODO: Добавить плавное изменение аннотаций и оверлея
+        // Надо вычислять какой эвент тригернул изменение View
+        uiView.removeOverlays(uiView.overlays)
+        uiView.addOverlay(MKPolyline(coordinates: annotations, count: annotations.count))
+        let addAnnotations = annotations.map(TappableMapAnnotation.init)
+        uiView.removeAnnotations(uiView.annotations)
+        uiView.addAnnotations(addAnnotations)
+
         if prevLocation.center != location.center {
             uiView.region = location
             prevLocation = location
         }
-        let annotationsToDelete = uiView.annotations.filter {
-            !annotations.contains($0.coordinate)
-        }
-        let annotationsToAdd: [TappableMapAnnotation] = annotations
-            .filter {
-                !uiView.annotations.map(\.coordinate).contains($0)
-            }
-            .map(TappableMapAnnotation.init)
-        uiView.removeAnnotations(annotationsToDelete)
-        uiView.addAnnotations(annotationsToAdd)
-        uiView.removeOverlays(uiView.overlays)
-        uiView.addOverlay(MKPolyline(coordinates: annotations, count: annotations.count))
     }
 }
 extension TappableMapView {
