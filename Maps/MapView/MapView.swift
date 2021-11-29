@@ -50,6 +50,7 @@ struct MapView: View {
         return HStack(alignment: .center) {
             SimpleTableView(model: tableModel)
             TappableMapView(
+                location: $viewModel.location,
                 annotations: $viewModel.mapLocations,
                 selectedLocation: $viewModel.mapSelectedLocation,
                 onLongPress: {

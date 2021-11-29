@@ -12,18 +12,23 @@ import Combine
 struct TappableMapView: UIViewRepresentable {
     @Binding private var annotations: [CLLocationCoordinate2D]
     @Binding var selectedLocation: CLLocationCoordinate2D?
+    @Binding var location: MKCoordinateRegion
+    @PropertyWrapper private var prevLocation: MKCoordinateRegion
     private let onLongPress: (CLLocationCoordinate2D) -> Void
     private let onDeletedMark: (CLLocationCoordinate2D) -> Void
     
     // TODO: Добавить в инициализатор начальные координаты
     init(
+        location: Binding<MKCoordinateRegion>,
         annotations: Binding<[CLLocationCoordinate2D]>,
         selectedLocation: Binding<CLLocationCoordinate2D?>,
         onLongPress: @escaping (CLLocationCoordinate2D) -> Void,
         onDeletedMark: @escaping (CLLocationCoordinate2D) -> Void
     ) {
+        _location = location
         _annotations = annotations
         _selectedLocation = selectedLocation
+        self.prevLocation = location.wrappedValue
         self.onLongPress = onLongPress
         self.onDeletedMark = onDeletedMark
     }
@@ -31,19 +36,17 @@ struct TappableMapView: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
         let mapView = TappableMapUIView()
         // TODO: Убрать хардкод и передавать из вне
-        mapView.region = .init(
-            center: Cities.moscow.coordinates,
-            span: .init(
-                latitudeDelta: 0.3,
-                longitudeDelta: 0.3
-            )
-        )
+        mapView.region = location
         mapView.delegate = context.coordinator
         mapView.onLongPress = onLongPress
         return mapView
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        if prevLocation.center != location.center {
+            uiView.region = location
+            prevLocation = location
+        }
         let annotationsToDelete = uiView.annotations.filter {
             !annotations.contains($0.coordinate)
         }

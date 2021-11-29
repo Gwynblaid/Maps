@@ -34,7 +34,7 @@ final class MapViewModel: ObservableObject {
     ) {
         self.locationService = locationService
         self.storeManager = storeManager
-        let distance: CLLocationDistance = 1000
+        let distance: CLLocationDistance = 6000
         location = MKCoordinateRegion(
             center: Cities.moscow.coordinates,
             latitudinalMeters: distance,

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct LocationTableCell: View {
     private let model: LocationTableCellModel
