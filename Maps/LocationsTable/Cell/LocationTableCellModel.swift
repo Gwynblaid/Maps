@@ -14,6 +14,8 @@ struct LocationTableCellModel: CellModel {
     var id = UUID().uuidString
 
     let location: LocationObject
+    
+    let onDeletion: (_ location: LocationObject) -> Void
 
     func createCell() -> LocationTableCell {
         LocationTableCell(model: self)

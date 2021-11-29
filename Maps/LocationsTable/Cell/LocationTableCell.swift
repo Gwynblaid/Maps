@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LocationTableCell: View {
-    @State private var model: LocationTableCellModel
+    private let model: LocationTableCellModel
     
     init(model: LocationTableCellModel) {
         self.model = model
@@ -19,9 +19,15 @@ struct LocationTableCell: View {
         Color(.sRGB, red: 0, green: 0, blue: 1, opacity: 0.2) : .clear
         return ZStack {
             color
-            VStack {
-                Text("Lat: \(model.location.location.latitude)")
-                Text("Long: \(model.location.location.longitude)")
+            HStack {
+                VStack {
+                    Text("Lat: \(model.location.location.latitude)")
+                    Text("Long: \(model.location.location.longitude)")
+                }
+                Spacer(minLength: nil)
+                Image(systemName: "trash").onTapGesture {
+                    self.model.onDeletion(self.model.location)
+                }
             }
         }
     }

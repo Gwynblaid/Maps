@@ -15,10 +15,24 @@ struct MapView: View {
         locationService: LocationServiceImpl(),
         storeManager: UserDefaultsStorageManager()
     )
-    @ObservedObject var tableModel = SimpleTableViewModel(cellFactory: { LocationTableCellModel(isSelected: false, location: $0) })
+    @ObservedObject var tableModel: SimpleTableViewModel<LocationTableCellModel, LocationObject>
     
     init() {
+        weak var viewModel: MapViewModel?
+        tableModel = SimpleTableViewModel(
+            cellFactory: {
+                LocationTableCellModel(
+                    isSelected: false,
+                    location: $0,
+                    onDeletion: { locationObject in
+                        guard let viewModel = viewModel else {
+                            return
+                        }
+                        viewModel.locations = viewModel.locations.filter { $0 != locationObject }
+                    })
+            })
         bind()
+        viewModel = self.viewModel
     }
 
     // TODO: - Фабрика вместо метода bind и создания моделей
@@ -37,10 +51,14 @@ struct MapView: View {
             SimpleTableView(model: tableModel)
             TappableMapView(
                 annotations: $viewModel.mapLocations,
-                selectedLocation: $viewModel.mapSelectedLocation
-            ) {
-                viewModel.locations.append(LocationObject(location: $0))
-            }
+                selectedLocation: $viewModel.mapSelectedLocation,
+                onLongPress: {
+                    viewModel.locations.append(LocationObject(location: $0))
+                },
+                onDeletedMark: { _ in
+                    viewModel.locations = viewModel.locations.filter { $0 != viewModel.selectedLocation }
+                }
+            )
         }
 	}
 }

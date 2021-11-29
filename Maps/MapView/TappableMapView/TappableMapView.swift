@@ -13,22 +13,19 @@ struct TappableMapView: UIViewRepresentable {
     @Binding private var annotations: [CLLocationCoordinate2D]
     @Binding var selectedLocation: CLLocationCoordinate2D?
     private let onLongPress: (CLLocationCoordinate2D) -> Void
-    let defaultColor: Color
-    let selectedColor: Color
+    private let onDeletedMark: (CLLocationCoordinate2D) -> Void
     
     // TODO: Добавить в инициализатор начальные координаты
     init(
         annotations: Binding<[CLLocationCoordinate2D]>,
-        defaultColor: Color = .blue,
-        selectedColor: Color = .green,
         selectedLocation: Binding<CLLocationCoordinate2D?>,
-        onLongPress: @escaping (CLLocationCoordinate2D) -> Void
+        onLongPress: @escaping (CLLocationCoordinate2D) -> Void,
+        onDeletedMark: @escaping (CLLocationCoordinate2D) -> Void
     ) {
         _annotations = annotations
-        self.onLongPress = onLongPress
-        self.defaultColor = defaultColor
-        self.selectedColor = selectedColor
         _selectedLocation = selectedLocation
+        self.onLongPress = onLongPress
+        self.onDeletedMark = onDeletedMark
     }
 
     func makeUIView(context: Context) -> MKMapView {
@@ -48,9 +45,8 @@ struct TappableMapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         uiView.removeAnnotations(uiView.annotations)
-        uiView.addAnnotations(annotations.map{
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = $0
+        uiView.addAnnotations(annotations.map {
+            let annotation = TappableMapAnnotation(coordinate: $0)
             return annotation
         })
     }
@@ -64,20 +60,46 @@ extension TappableMapView {
             self.parent = parent
         }
 
-        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            guard ((annotation as? MKPointAnnotation) != nil) else {
-                return nil
+        func mapView(
+            _ mapView: MKMapView,
+            viewFor annotation: MKAnnotation
+        ) -> MKAnnotationView? {
+            guard let annotation = annotation as? TappableMapAnnotation else {
+              return nil
             }
-            let pinReusable = "pinReusable"
-            let view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: pinReusable)
-            let color = parent.selectedLocation == annotation.coordinate ? parent.selectedColor : parent.defaultColor
-            view.markerTintColor = UIColor(color)
+            let identifier = "TappableMapAnnotation"
+            var view: MKMarkerAnnotationView
+            let isSelected = annotation.coordinate == parent.selectedLocation
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(
+                withIdentifier: identifier) as? MKMarkerAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+                view.isSelected = isSelected
+            } else {
+                view = MKMarkerAnnotationView(
+                    annotation: annotation,
+                    reuseIdentifier: identifier
+                )
+                
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
+                button.setImage(UIImage(systemName: "trash"), for: .normal)
+                button.addAction(
+                    UIAction(handler: { [weak self, annotation] _ in
+                        self?.parent.onDeletedMark(annotation.coordinate)
+                    }),
+                    for: .touchUpInside
+                )
+                view.rightCalloutAccessoryView = button
+                view.isSelected = isSelected
+            }
             return view
         }
         
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
             guard let view = view as? MKMarkerAnnotationView,
-            let annotation = view.annotation as? MKPointAnnotation else {
+            let annotation = view.annotation as? TappableMapAnnotation else {
                 return
             }
             parent.selectedLocation = annotation.coordinate

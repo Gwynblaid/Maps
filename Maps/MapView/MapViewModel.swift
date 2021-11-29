@@ -84,7 +84,12 @@ final class MapViewModel: ObservableObject {
             .removeDuplicates()
             .sink { [weak self] locations in
                 guard let self = self else { return }
-//                _ = self.storeManager.save(Set(locations))
+                _ = self.storeManager.save(Set(locations))
+                if let selectedLocation = self.selectedLocation,
+                   !locations.contains(selectedLocation)
+                {
+                    self.selectedLocation = nil
+                }
                 self.mapLocations = locations.map(\.location)
             }
             .store(in: &cancellables)

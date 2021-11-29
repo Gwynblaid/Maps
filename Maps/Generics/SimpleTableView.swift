@@ -16,11 +16,9 @@ struct SimpleTableView<CellModelType: CellModel, DataType: Equatable>: View {
     }
 
     var body: some View {
-        NavigationView {
-            List(model.cells) { cell in
-                cell.createCell().onTapGesture { [model] in
-                    model.selectedCellOutput = cell
-                }
+        List(model.cells) { cell in
+            cell.createCell().onTapGesture { [model] in
+                model.selectedCellOutput = cell
             }
         }
     }
