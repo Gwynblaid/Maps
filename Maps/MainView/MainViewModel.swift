@@ -20,6 +20,7 @@ final class MainViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     
+    // TODO: Сделать не явными зависимости, для обеспечения тестирования модели
     init(
         mapViewModel: MapViewModel,
         tableViewModel: TableViewModel

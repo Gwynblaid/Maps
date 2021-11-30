@@ -10,7 +10,6 @@ import CoreLocation
 import MapKit
 
 // TODO: - Сократить класс. Разбить на работу со стором и работу с картой.
-// Добавить в него работу с таблицей, чтобы MainView имел только одну модель
 final class MapViewModel: ObservableObject {
     // Не используются, ранее было сделано для того чтобы начинать с текущей геопозиции
     // TODO: Использовать в инициализации карты. Добавить кнопку  центрирования
@@ -52,7 +51,7 @@ final class MapViewModel: ObservableObject {
             .assign(to: \.location, on: self)
             .store(in: &cancellables)
         self.locationService
-            .authorizationStatatus
+            .authorizationStatus
             .receive(on: DispatchQueue.main)
             .assign(to: \.locationServiceStatus, on: self)
             .store(in: &cancellables)
@@ -65,6 +64,7 @@ final class MapViewModel: ObservableObject {
             }
             .store(in: &cancellables)
         $isSearchingCurrentLocation
+            .dropFirst()
             .removeDuplicates()
             .sink { [weak self] _ in
                 guard let self = self else { return }

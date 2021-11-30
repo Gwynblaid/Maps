@@ -15,7 +15,7 @@ protocol StorageManager {
     
     func remove<ObjectType: StorageObject>(with id: ObjectType.ID) -> ObjectType?
     func remove<ObjectType: StorageObject>(_ object: ObjectType) -> Bool
-    func remove<ObjectType: StorageObject>(_ ojects: Set<ObjectType>) -> Bool
+    func remove<ObjectType: StorageObject>(_ objects: Set<ObjectType>) -> Bool
     func removeAll<ObjectType: StorageObject>() -> Set<ObjectType>
 }
 

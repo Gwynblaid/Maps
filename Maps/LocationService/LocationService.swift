@@ -11,7 +11,7 @@ import Combine
 
 protocol LocationService {
     var currentLocation: AnyPublisher<CLLocationCoordinate2D, Never> { get }
-    var authorizationStatatus: AnyPublisher<CLAuthorizationStatus, Never> { get }
+    var authorizationStatus: AnyPublisher<CLAuthorizationStatus, Never> { get }
 
 	func findCurrent()
     func requestPermissions()

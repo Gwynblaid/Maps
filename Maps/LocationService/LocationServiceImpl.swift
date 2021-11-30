@@ -33,7 +33,7 @@ extension LocationServiceImpl: LocationService {
         _currentLocation.eraseToAnyPublisher()
     }
 
-    var authorizationStatatus: AnyPublisher<CLAuthorizationStatus, Never>{
+    var authorizationStatus: AnyPublisher<CLAuthorizationStatus, Never>{
         Just(locationManager.authorizationStatus)
             .merge(with: _authorizationStatatus)
             .eraseToAnyPublisher()

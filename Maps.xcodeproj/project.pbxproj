@@ -27,6 +27,9 @@
 		18C1F1312755706900A349C8 /* MainViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F1302755706900A349C8 /* MainViewFactory.swift */; };
 		18C1F133275570A000A349C8 /* MainViewFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F132275570A000A349C8 /* MainViewFactoryImpl.swift */; };
 		18C1F136275572F000A349C8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F135275572F000A349C8 /* MapView.swift */; };
+		18C1F13B275595F300A349C8 /* LocationServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F13A275595F300A349C8 /* LocationServiceMock.swift */; };
+		18C1F14127559BEE00A349C8 /* StorageManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F13F27559BD300A349C8 /* StorageManagerMock.swift */; };
+		18C1F1442755A27F00A349C8 /* MapViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1F1432755A27F00A349C8 /* MapViewModelTests.swift */; };
 		18E39100274F73CA0088BD43 /* LocationTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E390FF274F73CA0088BD43 /* LocationTableCellModel.swift */; };
 		18E39102274F74BA0088BD43 /* LocationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E39101274F74BA0088BD43 /* LocationTableCell.swift */; };
 		18E39108275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */; };
@@ -84,6 +87,9 @@
 		18C1F1302755706900A349C8 /* MainViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewFactory.swift; sourceTree = "<group>"; };
 		18C1F132275570A000A349C8 /* MainViewFactoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewFactoryImpl.swift; sourceTree = "<group>"; };
 		18C1F135275572F000A349C8 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		18C1F13A275595F300A349C8 /* LocationServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceMock.swift; sourceTree = "<group>"; };
+		18C1F13F27559BD300A349C8 /* StorageManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerMock.swift; sourceTree = "<group>"; };
+		18C1F1432755A27F00A349C8 /* MapViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelTests.swift; sourceTree = "<group>"; };
 		18E390FF274F73CA0088BD43 /* LocationTableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCellModel.swift; sourceTree = "<group>"; };
 		18E39101274F74BA0088BD43 /* LocationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCell.swift; sourceTree = "<group>"; };
 		18E39107275038B10088BD43 /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
@@ -157,6 +163,7 @@
 		1831F3BB274EDB36003C90F1 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
+				18C1F139275595DE00A349C8 /* Tests */,
 				1831F3BC274EDB5B003C90F1 /* MapViewModel.swift */,
 				18C1F135275572F000A349C8 /* MapView.swift */,
 				18C1F12F2755705B00A349C8 /* Factory */,
@@ -237,6 +244,24 @@
 				18C1F1272755617A00A349C8 /* DataMock.swift */,
 				18C1F129275561DC00A349C8 /* CellMock.swift */,
 				18C1F12B2755620000A349C8 /* ViewMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		18C1F139275595DE00A349C8 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				18C1F1422755A25500A349C8 /* Mocks */,
+				18C1F1432755A27F00A349C8 /* MapViewModelTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		18C1F1422755A25500A349C8 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				18C1F13A275595F300A349C8 /* LocationServiceMock.swift */,
+				18C1F13F27559BD300A349C8 /* StorageManagerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -517,8 +542,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				45A56F8C274E9EA700F54B8C /* MapsTests.swift in Sources */,
+				18C1F13B275595F300A349C8 /* LocationServiceMock.swift in Sources */,
 				18C1F12E2755620900A349C8 /* ViewMock.swift in Sources */,
+				18C1F1442755A27F00A349C8 /* MapViewModelTests.swift in Sources */,
 				18C1F1252755614000A349C8 /* SimpleTableViewModelTests.swift in Sources */,
+				18C1F14127559BEE00A349C8 /* StorageManagerMock.swift in Sources */,
 				18C1F1282755617A00A349C8 /* DataMock.swift in Sources */,
 				18C1F12D2755620500A349C8 /* CellMock.swift in Sources */,
 			);
